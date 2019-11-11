@@ -1,4 +1,4 @@
-module PCAmix
+module MixedPCA
 export pcamix
     using LinearAlgebra, TypedTables, Statistics, CategoricalArrays
     import StatsBase: countmap
