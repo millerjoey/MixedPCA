@@ -1,4 +1,4 @@
-function gsvd(Z::AbstractMatrix, N, M)
+function gsvd(Z, N, M)
     Z̃ = N^(1/2)*Z*M^(1/2)
     r = svd(Z̃)
     Δ = Diagonal(r.S)
@@ -7,7 +7,7 @@ function gsvd(Z::AbstractMatrix, N, M)
     return(U, Δ, Vt)
 end
 
-function centered_model_matrix(c::AbstractCategoricalArray)
+function centered_model_matrix(c::AbstractCategoricalVector)
     m = Matrix{Float64}(undef, length(c), length(c.pool))
     for j in 1:size(m, 2)
         l = (j .== c.refs)
@@ -16,7 +16,7 @@ function centered_model_matrix(c::AbstractCategoricalArray)
     return m
 end
 
-function pcamix(D::Table)
+function pcamix(D)
     data = []
     m = Float64[]
     max_dim = 0
