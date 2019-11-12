@@ -4,7 +4,7 @@ function gsvd(Z::AbstractMatrix, N, M)
     Δ = Diagonal(r.S)
     U = N^(-1/2)*r.U
     Vt = r.Vt*M^(-1/2)
-    return(U, Δ, Vt)
+    return U, Δ, Vt
 end
 
 function centered_model_matrix(c::AbstractCategoricalArray)
