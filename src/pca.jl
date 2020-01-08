@@ -41,5 +41,6 @@ function pcamix(D)
     N = Diagonal(fill(1/n, n))
     M = Diagonal(m)
     U, Δ, Vt = gsvd(Z, N, M)
+    max_dim = min(max_dim, size(D, 1))
     return U[:, 1:max_dim], Diagonal(diag(Δ)[1:max_dim]), Vt[1:max_dim, :]
 end
