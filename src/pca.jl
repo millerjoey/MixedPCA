@@ -8,7 +8,7 @@ function gsvd(Z, N, M)
 end
 
 function centered_model_matrix(c::AbstractCategoricalVector)
-    m = Matrix{Float64}(undef, length(c), length(c.pool))
+    m = Matrix{Float64}(undef, length(c), length(unique(c)))
     for j in 1:size(m, 2)
         l = (j .== c.refs)
         m[:, j] .= l .- mean(l)
@@ -30,7 +30,7 @@ function pcamix(D)
         elseif col isa AbstractCategoricalVector
             ns = countmap(col.refs)
             max_dim += length(ns) - 1
-            ns = [length(col)/ns[i] for i in 1:length(ns)]
+            ns = [length(col)/ns[i] for i in keys(ns)]
             append!(m, ns)
             push!(data, centered_model_matrix(col))
         else
