@@ -17,6 +17,7 @@ function centered_model_matrix(c::AbstractCategoricalVector)
 end
 
 function pcamix(D)
+    D = copy(D)
     data = []
     m = Float64[]
     max_dim = 0
